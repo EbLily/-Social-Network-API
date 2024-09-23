@@ -145,7 +145,6 @@ module.exports = {
     // async addFriend(req, res) { },
     // async removeFriend (req, res) { }
 
-
 /*
 module.exports = {
   getUsers,
