@@ -1,5 +1,5 @@
 const { Thought, User, Readction } = require('../models');
-const {Types} = require('mongoose');
+// const {Types} = require('mongoose');
 
 
 module.exports = {
@@ -22,7 +22,7 @@ module.exports = {
   async getSingleThought(req, res) {
     try {
       const thought = await Thought.findOne({ _id: req.params.thoughtId })
-        .populate('users');
+        // .populate('users');
 
       if (!thought) {
         return res.status(404).json({ message: 'No thought found' });
@@ -58,17 +58,17 @@ module.exports = {
          console.log("Incoming Parameters: ", req.params);  // the information to FIND the current USER
          console.log("Incoming Data: ", req.body);  // the information to update
          try {
-             const currentUser = await User.findOneAndUpdate(
-                 { _id: req.params.userId }, 
+             const currentThought = await Thought.findOneAndUpdate(
+                 { _id: req.params.thoughtId }, 
                  { $set: req.body },
                  { new: true }
              );
              // we should validate that a user was found
-             if(!currentUser) {
+             if(!currentThought) {
                  return res.status(500).json("User not found");
              }
-             console.log("Data: ", currentUser);
-             res.status(201).json(currentUser);
+             console.log("Data: ", currentThought);
+             res.status(201).json(currentThought);
          } catch (error) {
              console.log("err: ", error);
              res.status(500).json(error);
@@ -96,7 +96,7 @@ module.exports = {
     try {
         const thought =await Thought.findOneAndUpdate(
             {_id:req.params.thoughtId},
-            {$addToSet: {reactions:req.body}},
+            { $addToSet: { reactions: req.body} },
             {runValidators: true, new: true}
         );
         thought ? res.json(thought) : res.status(404).json({message:notFound});
@@ -124,8 +124,3 @@ module.exports = {
     },
   };
 
-//      async getSingleThought (req, res)  { },
-//      async deleteThought(req, res) { },
-//      async addReaction(req, res) { },
-//      async removeReaction (req, res) { }
-// }
