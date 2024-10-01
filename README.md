@@ -56,6 +56,10 @@ POST,PUT,and DELETE.
 3. Open an integrated terminal of the document(-Social-Network-API)
 4. Run command npm i and npm run dev
 
+## Link to the video 
+https://drive.google.com/file/d/1eEFK2bPDkf6jH5bdQ5abG_lX1ZzSWASs/view
+
+
 ## Built With :
 JSON
 mongoose: 8.0.0
